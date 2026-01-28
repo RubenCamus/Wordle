@@ -118,6 +118,18 @@ async function changeColors(colors, cr) {
     }
 }
 
+async function sendLocalStorage() { 
+    var lastPlayed = localStorage.getItem("lastPlayed");
+    
+}
+
+// Setup local storage for storing game data of player
+localStorage.storagesetItem
+
+
+// On player win set the date of last win today. 
+localStorage.setItem("lastPlayed", Date().toString)
+
 // Call API to start a game
 // Retrieve number of squares per row
 // Number of total guesses (rows)
