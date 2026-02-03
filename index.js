@@ -78,7 +78,12 @@ async function getDailyChars() {
 async function sendInput(cr) {
     var poki = await getPoki(cr);
     var colors = await fetchPokemon(poki);
+    console.log(colors);
+    if (colors != null) {
     await changeColors(colors, cr);    
+    } else { 
+        console.log('ERROR');
+    }
 }
 
 async function startLogic() {
@@ -123,21 +128,18 @@ async function sendLocalStorage() {
     
 }
 
-// Setup local storage for storing game data of player
-localStorage.storagesetItem
+// // Setup local storage for storing game data of player
+// //localStorage.storagesetItem
 
 
-// On player win set the date of last win today. 
+// // On player win set the date of last win today. 
 localStorage.setItem("lastPlayed", Date().toString)
 
 // Call API to start a game
-// Retrieve number of squares per row
-// Number of total guesses (rows)
-
 async function app() {
     // Get Daily Chars
     var todaysChars = await getDailyChars();
-    // Create Rows with variable squares depending on chars
+    // Create Rows with variable squares depending on word's amount of characters
     var rows = await createRows();
     // Create Squares
     for (var i = 0; i < rows.length; i++){
@@ -147,6 +149,5 @@ async function app() {
         }
     }
     await inputNew();
-    // InputLogic functions depending on amount of chars and for each row.
 }
 app();
