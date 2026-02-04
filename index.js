@@ -134,6 +134,12 @@ async function sendLocalStorage() {
 
 // // On player win set the date of last win today. 
 localStorage.setItem("lastPlayed", Date().toString)
+// On player input correct store the word 
+
+// Store the letters the player has used with their corresponding color
+
+
+
 
 // Call API to start a game
 async function app() {
