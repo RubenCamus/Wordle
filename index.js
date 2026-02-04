@@ -57,7 +57,6 @@ async function inputNew() {
             if (event.keyCode === 13) {
                 // Function to submit current poki
                 await sendInput(curRow);
-                await inputNew();
             }
             else if (wordle.value.length == 1) {
                 wordle.nextElementSibling.focus();
@@ -78,9 +77,11 @@ async function getDailyChars() {
 async function sendInput(cr) {
     var poki = await getPoki(cr);
     var colors = await fetchPokemon(poki);
-    console.log(colors);
-    if (colors != null) {
-    await changeColors(colors, cr);    
+    console.log('colors constructor is ', Array.isArray(colors));
+    if (Array.isArray(colors)) {
+    await changeColors(colors, cr);
+    cr.className = "word completed";
+    await inputNew();
     } else { 
         console.log('ERROR');
     }
@@ -101,7 +102,6 @@ async function getPoki(cr) {
         pokemon += char.value
     });
     console.log("input pokemon is " + pokemon);
-    cr.className = "word completed";
     return pokemon;
 }
 
