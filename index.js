@@ -77,18 +77,29 @@ async function getDailyChars() {
 async function sendInput(cr) {
     var poki = await getPoki(cr);
     var colors = await fetchPokemon(poki);
-    console.log('colors constructor is ', Array.isArray(colors));
     if (Array.isArray(colors)) {
     await changeColors(colors, cr);
+    await storeLocal(cr);
     cr.className = "word completed";
     await inputNew();
     } else { 
         console.log('ERROR');
     }
 }
-
-async function startLogic() {
-    var rows = await getRows();
+async function storeLocal(cr) {
+    const poki = await getPoki(cr);
+    const localPokiArray = [];
+    // Get the word sent
+    var locStorage = (localStorage.getItem("words"));
+    // Parse the local store, and store the input word into an array and stringify
+    if (locStorage == null ) {
+        localStorage.setItem("words", JSON.stringify([poki]));
+        return;
+    }
+    var locParsed = await JSON.parse(locStorage);
+    locParsed.push(poki);
+    var locStringify = JSON.stringify(locParsed);
+    localStorage.setItem("words",locStringify);
 }
 
 async function getPoki(cr) {
@@ -135,7 +146,6 @@ async function sendLocalStorage() {
 // // On player win set the date of last win today. 
 localStorage.setItem("lastPlayed", Date().toString)
 // On player input correct store the word 
-
 // Store the letters the player has used with their corresponding color
 
 

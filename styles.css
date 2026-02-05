@@ -16,6 +16,19 @@ div.word {
     margin: 10px;
 }
 
+div.keyboard { 
+    display: grid;
+    place-items: center;
+    margin-top: 30px;
+}
+button.key { 
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    font-family: fantasy;
+    font-weight:700;
+    border: none;
+}
 html {background-color: rgb(255, 255, 255);}
 
 input.char {
