@@ -87,19 +87,21 @@ async function sendInput(cr) {
     }
 }
 async function storeLocal(cr) {
-    const poki = await getPoki(cr);
-    const localPokiArray = [];
-    // Get the word sent
-    var locStorage = (localStorage.getItem("words"));
-    // Parse the local store, and store the input word into an array and stringify
+    const poki = await getPoki(cr); // Get the word sent
+    var locStorage = (localStorage.getItem("words"));    
     if (locStorage == null ) {
         localStorage.setItem("words", JSON.stringify([poki]));
         return;
     }
+    // Parse the local store, and store the input word with as a string. (localStorage only accepts Strings)
     var locParsed = await JSON.parse(locStorage);
     locParsed.push(poki);
     var locStringify = JSON.stringify(locParsed);
     localStorage.setItem("words",locStringify);
+    var dateString = Date().toString();
+    console.log('dateString', dateString);
+    localStorage.setItem("lastPlayed", dateString);
+    await sendLocalStorage();
 }
 
 async function getPoki(cr) {
@@ -136,7 +138,11 @@ async function changeColors(colors, cr) {
 
 async function sendLocalStorage() { 
     var lastPlayed = localStorage.getItem("lastPlayed");
-    
+    console.log('lastPlayed is', lastPlayed);
+    var res = await fetch(`http://localhost:3000/lastplayed`, {
+        method: 'PUT',
+        body: JSON.stringify({played: lastPlayed})
+    });
 }
 
 // // Setup local storage for storing game data of player
@@ -144,7 +150,6 @@ async function sendLocalStorage() {
 
 
 // // On player win set the date of last win today. 
-localStorage.setItem("lastPlayed", Date().toString)
 // On player input correct store the word 
 // Store the letters the player has used with their corresponding color
 
