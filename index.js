@@ -20,7 +20,6 @@ async function createRows() {
         rows.push(row);
     }
     rows[0].className = 'word';
-
     return rows;
 }
 async function getRows() {
@@ -63,7 +62,7 @@ async function inputNew() {
             } else if (event.keyCode === 8 ) {
                 wordle.previousElementSibling.focus();
             }     
-        })
+        });
     });
 }
 
@@ -78,10 +77,10 @@ async function sendInput(cr) {
     var poki = await getPoki(cr);
     var colors = await fetchPokemon(poki);
     if (Array.isArray(colors)) {
-    await changeColors(colors, cr);
-    await storeLocal(cr);
-    cr.className = "word completed";
-    await inputNew();
+        await changeColors(colors, cr);
+        await storeLocal(cr);
+        cr.className = "word completed";
+        await inputNew();
     } else { 
         console.log('ERROR');
     }
@@ -103,6 +102,21 @@ async function storeLocal(cr) {
     localStorage.setItem("lastPlayed", dateString);
     await sendLocalStorage();
 }
+
+async function sendLocalStorage() { 
+    var lastPlayed = localStorage.getItem("lastPlayed");
+    console.log('lastPlayed is', lastPlayed);
+    await fetch(`http://localhost:3000/lastplayed/:${lastPlayed}`);
+
+}
+
+async function checkStorage() { 
+    // Compare lastPlayed day to today
+    
+    // if same day display localStorage words into the game
+    // if not same day clear localStorage
+}
+
 
 async function getPoki(cr) {
     // var curRow = await getCurRow();
@@ -136,19 +150,6 @@ async function changeColors(colors, cr) {
     }
 }
 
-async function sendLocalStorage() { 
-    var lastPlayed = localStorage.getItem("lastPlayed");
-    console.log('lastPlayed is', lastPlayed);
-    var res = await fetch(`http://localhost:3000/lastplayed`, {
-        method: 'PUT',
-        body: JSON.stringify({played: lastPlayed})
-    });
-}
-
-// // Setup local storage for storing game data of player
-// //localStorage.storagesetItem
-
-
 // // On player win set the date of last win today. 
 // On player input correct store the word 
 // Store the letters the player has used with their corresponding color
@@ -169,6 +170,7 @@ async function app() {
             rows[i].append(square);
         }
     }
+
     await inputNew();
 }
 app();
