@@ -31,8 +31,8 @@ async function getRows() {
     return rows;
 }
 async function getCurRow() {
-    var json = (await fetch("http://localhost:3000/data/curRow"));
-    var curRowNumber = await json.json();
+    var storage = await getStorage();
+    var curRowNumber = storage.attempts.length;
     var rows = await getRows();
     var curRow = rows[curRowNumber];
     return curRow;
@@ -78,49 +78,15 @@ async function sendInput(cr) {
     var colors = await fetchPokemon(poki);
     if (Array.isArray(colors)) {
         await changeColors(colors, cr);
-        await storeLocal(cr);
+        await storeWord(poki);
         cr.className = "word completed";
         await inputNew();
     } else { 
         console.log('ERROR');
     }
 }
-async function storeLocal(cr) {
-    const poki = await getPoki(cr); // Get the word sent
-    var locStorage = (localStorage.getItem("words"));    
-    if (locStorage == null ) {
-        localStorage.setItem("words", JSON.stringify([poki]));
-        return;
-    }
-    // Parse the local store, and store the input word with as a string. (localStorage only accepts Strings)
-    var locParsed = await JSON.parse(locStorage);
-    locParsed.push(poki);
-    var locStringify = JSON.stringify(locParsed);
-    localStorage.setItem("words",locStringify);
-    var dateString = Date().toString();
-    console.log('dateString', dateString);
-    localStorage.setItem("lastPlayed", dateString);
-    await sendLocalStorage();
-}
-
-async function sendLocalStorage() { 
-    var lastPlayed = localStorage.getItem("lastPlayed");
-    console.log('lastPlayed is', lastPlayed);
-    await fetch(`http://localhost:3000/lastplayed/:${lastPlayed}`);
-
-}
-
-async function checkStorage() { 
-    // Compare lastPlayed day to today
-    
-    // if same day display localStorage words into the game
-    // if not same day clear localStorage
-}
-
 
 async function getPoki(cr) {
-    // var curRow = await getCurRow();
-    console.log(cr);
     // get squares array from cr children
     var squares = await getSquares(cr);
     // get char forEach square
@@ -150,17 +116,37 @@ async function changeColors(colors, cr) {
     }
 }
 
-// // On player win set the date of last win today. 
-// On player input correct store the word 
-// Store the letters the player has used with their corresponding color
 
+async function getStorage() { 
+    var storage = JSON.parse(localStorage.getItem("game"));
+    return storage;
+}
+async function storeWord(word) { 
+    var storage = await getStorage();
+    storage.attempts.push(word);
+    localStorage.setItem("game", JSON.stringify(storage));
+}
 
-
+async function loadGame() {
+    var cr = await getCurRow();
+    var todaySquares = await getSquares(cr);
+    for (let i = 0; i < todaySquares.length; i++) { 
+        var rowSquares = await getSquares(rows[i]);
+        var attemptedWord = saved.attempts[i];
+        for (let x = 0; x < rowSquares.length; x++) {
+            rowSquares[x].value = attemptedWord[x];
+        }
+    }
+}
 
 // Call API to start a game
 async function app() {
+    // Load game
+    const today = new Date().toISOString().slice(0, 10);
+    const saved = JSON.parse(localStorage.getItem("game"));
     // Get Daily Chars
     var todaysChars = await getDailyChars();
+    console.log('todayChars ', todaysChars);
     // Create Rows with variable squares depending on word's amount of characters
     var rows = await createRows();
     // Create Squares
@@ -171,6 +157,29 @@ async function app() {
         }
     }
 
+    // Check if there is a saved game from today. If there is load it, otherwise create new game.
+    if (saved?.date === today) {
+        // load attempts
+        if (saved.attempts.length != 0) {
+            for (let i = 0; i < todaysChars; i++) { 
+                var rowSquares = await getSquares(rows[i]);
+                let attemptedWord = saved.attempts[i];
+                console.log('attemptedWord is ', attemptedWord);
+                for (let x = 0; x < rowSquares.length; x++) {
+                    rowSquares[x].value = attemptedWord[x];
+                }
+            } 
+        }
+    } else { 
+        // start new game
+        localStorage.setItem("game",JSON.stringify(
+            {
+                date: today,
+                attempts: [],
+                finished: false
+            }));
+    }
+    console.log('going to Input');
     await inputNew();
 }
 app();
