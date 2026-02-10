@@ -1,3 +1,3 @@
 This project works as a Template for creating any Wordle game.
-You can have collections with items with a string of the desired words, and the code dynamically will create the game for each word length and logic. 
+The core functionality of the project -> It gets a random index from one collection's DB , and stores it in a different collection where the data is retrieved.
 Very long words may not style properly and could be bugs.
