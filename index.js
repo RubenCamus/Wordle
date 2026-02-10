@@ -30,6 +30,7 @@ async function getRows() {
     }
     return rows;
 }
+
 async function getCurRow() {
     var storage = await getStorage();
     var curRowNumber = storage.attempts.length;
@@ -80,6 +81,7 @@ async function sendInput(cr) {
         await changeColors(colors, cr);
         await storeWord(poki);
         cr.className = "word completed";
+        await checkWin(colors);
         await inputNew();
     } else { 
         console.log('ERROR');
@@ -90,7 +92,6 @@ async function loadPokiRows(poki, row) {
     var colors = await fetchPokemon(poki);
     await changeColors(colors, row);
 }
-
 
 async function getPoki(cr) {
     // get squares array from cr children
@@ -114,6 +115,7 @@ async function fetchPokemon(pokemon) {
 
 async function changeColors(colors, cr) {
     //var curRow = await getCurRow();
+    let counter = 0;
     var squares = await getSquares(cr);
     for(let i = 0; i < colors.length; i++) {
         var curSquare = squares[i];
@@ -121,7 +123,31 @@ async function changeColors(colors, cr) {
         curSquare.disabled = true;
     }
 }
+async function checkWin(colors) {
+    var storage = await getStorage();
+    var counter = 0;
+    // var lastPoki = await getPoki();
+    // var colors = await fetchPokemon(lastPoki);
+    for (let i = 0; i < colors.length; i++) {
+        if (colors[i] == "green") {
+            counter++;
+        }
+    }
+    if (counter == colors.length) {
+        await finishGame();
+    }
+}
 
+async function finishGame() {
+    // Check if player finished (localStorage)
+    const storage = JSON.parse(localStorage.getItem("game"));
+    if (storage.attempts.length >= 6) {
+        storage.finished = true;
+        localStorage.setItem("game", JSON.stringify(storage));
+    }
+    // if (storage.finished != true) {return console.log('game is not finished');}
+    window.location.href = "http://127.0.0.1:5500/end.html"; // Load end screen
+}
 
 async function getStorage() { 
     var storage = JSON.parse(localStorage.getItem("game"));
