@@ -86,6 +86,12 @@ async function sendInput(cr) {
     }
 }
 
+async function loadPokiRows(poki, row) {
+    var colors = await fetchPokemon(poki);
+    await changeColors(colors, row);
+}
+
+
 async function getPoki(cr) {
     // get squares array from cr children
     var squares = await getSquares(cr);
@@ -161,14 +167,16 @@ async function app() {
     if (saved?.date === today) {
         // load attempts
         if (saved.attempts.length != 0) {
-            for (let i = 0; i < todaysChars; i++) { 
+            for (let i = 0; i < saved.attempts.length; i++) {
+                // For each attempted word check it's colors with server
                 var rowSquares = await getSquares(rows[i]);
                 let attemptedWord = saved.attempts[i];
-                console.log('attemptedWord is ', attemptedWord);
+                console.log('attemptedWord is ',attemptedWord);
+                await loadPokiRows(attemptedWord,rows[i]);   
                 for (let x = 0; x < rowSquares.length; x++) {
                     rowSquares[x].value = attemptedWord[x];
                 }
-            } 
+            }
         }
     } else { 
         // start new game

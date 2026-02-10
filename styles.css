@@ -47,14 +47,9 @@ input.char {
     font-size: 25px;
     color:rgb(49, 41, 41);
 }
-div.disabled{
-    input.char {
-        background-color: rgb(175, 175, 175)
-    }
-}
+
 input.green {
     background-color: lightgreen;
-
 }
 input.orange {
     background-color: orange;
