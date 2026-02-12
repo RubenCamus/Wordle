@@ -145,7 +145,6 @@ async function finishGame() {
         storage.finished = true;
         localStorage.setItem("game", JSON.stringify(storage));
     }
-    // if (storage.finished != true) {return console.log('game is not finished');}
     window.location.href = "http://127.0.0.1:5500/end.html"; // Load end screen
 }
 
