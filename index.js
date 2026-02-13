@@ -45,6 +45,12 @@ async function getSquares(row) {
 }
 
 async function inputNew() {
+    var storage = await getStorage();
+    if (storage.finished == true) {
+        console.log('game already finished');
+        // window.location.href = "http://127.0.0.1:5500/end.html"; // Load end screen
+        return;
+    }
     var curRow = await getCurRow();
     console.log('curRow is', curRow);
     const squares = await getSquares(curRow);
@@ -65,6 +71,23 @@ async function inputNew() {
             }     
         });
     });
+}
+
+async function buttonListener() { 
+    const keys = document.querySelectorAll(".key")
+    keys.forEach( (key) => { 
+        key.addEventListener("click", keyFunction(key))
+    });
+}
+
+async function keyFunction(key) { 
+    const ch = key.value; // This gets the character the button has.
+    const curElement = document.activeElement;
+    console.log('curElement', curElement);
+    if (curElement.className != 'char') {
+        return;
+    }
+    curElement.value = ch;
 }
 
 // Get number of characters from daily pokiDB
@@ -134,13 +157,15 @@ async function checkWin(colors) {
         }
     }
     if (counter == colors.length) {
+        storage.finished = true;
+        localStorage.setItem("game", JSON.stringify(storage));
         await finishGame();
     }
 }
 
 async function finishGame() {
     // Check if player finished (localStorage)
-    const storage = JSON.parse(localStorage.getItem("game"));
+    const storage = await getStorage();
     if (storage.attempts.length >= 6) {
         storage.finished = true;
         localStorage.setItem("game", JSON.stringify(storage));
@@ -214,5 +239,6 @@ async function app() {
     }
     console.log('going to Input');
     await inputNew();
+    await buttonListener();
 }
 app();
