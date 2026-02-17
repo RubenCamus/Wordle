@@ -76,13 +76,22 @@ async function inputNew() {
 async function buttonListener() { 
     const keys = document.querySelectorAll(".key")
     keys.forEach( (key) => { 
-        key.addEventListener("click", keyFunction(key))
+        key.addEventListener("click", async function keyFunc(event) { 
+            const ch = event.value; // This gets the character the button has.
+            var squaresArr = [];
+            const curElement = document.activeElement;
+            if (curElement.nodeName == "INPUT") { 
+                squaresArr.push(curElement);
+            }
+            var lastSquare = squaresArr.length - 1;
+            lastSquare.value = ch;       
+        });
     });
 }
 
-async function keyFunction(key) { 
-    const ch = key.value; // This gets the character the button has.
-    const curElement = document.activeElement;
+async function keyFunction(event) { 
+    const ch = event.value; // This gets the character the button has.
+    const curElement = document.hasFocus;
     console.log('curElement', curElement);
     if (curElement.className != 'char') {
         return;
@@ -137,7 +146,6 @@ async function fetchPokemon(pokemon) {
 }
 
 async function changeColors(colors, cr) {
-    //var curRow = await getCurRow();
     let counter = 0;
     var squares = await getSquares(cr);
     for(let i = 0; i < colors.length; i++) {
