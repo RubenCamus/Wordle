@@ -1,5 +1,5 @@
 var charsCounter = 0;
-
+const API_URL ="https://wordleapi-qola.onrender.com"
 // Create a number of html inputs with attributes from the amount of characters received from the MongoDB dailyDb 
 async function createSquare() {
     var square = document.createElement("input");
@@ -101,7 +101,7 @@ async function keyFunction(event) {
 
 // Get number of characters from daily pokiDB
 async function getDailyChars() {
-    var dailyChars = await fetch('http://localhost:3000/start');
+    var dailyChars = await fetch(`${API_URL}/start`);
     var dailyCharsJson = await dailyChars.json();
     return dailyCharsJson;
 }
@@ -138,7 +138,7 @@ async function getPoki(cr) {
 }
 
 async function fetchPokemon(pokemon) {
-    const url = `http://localhost:3000/pokemon/${pokemon}`;
+    const url = `${API_URL}/pokemon/${pokemon}`;
     const response = await fetch(url);
     const colors = await response.json(); // Colors to display
     console.log(colors);
@@ -178,7 +178,7 @@ async function finishGame() {
         storage.finished = true;
         localStorage.setItem("game", JSON.stringify(storage));
     }
-    window.location.href = "http://127.0.0.1:5500/end.html"; // Load end screen
+    window.location.href = `${API_URL}/end.html`; // Load end screen
 }
 
 async function getStorage() { 
