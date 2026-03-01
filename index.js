@@ -64,14 +64,11 @@ async function inputNew() {
                 // Function to submit current poki
                 await sendInput(curRow);
             }
-            else if (wordle.value.length == 1) {
-                wordle.nextElementSibling.focus();
-                if (curSquare < squares.length) curSquare++;
-                console.log(curSquare);
-            } else if (event.keyCode === 8 ) {
-                // wordle.previousElementSibling.focus();
-                if (curSquare > 0) curSquare--;
-            }     
+            // else if (wordle.value.length == 1) {
+            //     // wordle.nextElementSibling.focus();
+            // } else if (event.keyCode === 8 ) {
+            //     // wordle.previousElementSibling.focus();
+            // }     
         });
     });
 }
@@ -83,6 +80,12 @@ async function gameState(input) {
     focusSquare.value = input;
     if (curSquare < squaresArray.length) curSquare++;
 }
+
+window.addEventListener("keydown", (event) => { 
+    const character = event.key;
+    console.log(character);
+    gameState(character);
+})
 
 const keyboard = document.getElementById("keyboard");
 keyboard.addEventListener("click", (event) => {
