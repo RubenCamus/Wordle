@@ -43,7 +43,7 @@ async function getSquares(row) {
     var rowSquares = Array.from(row.children);
     return rowSquares;
 }
-
+var curSquare = 0;
 async function inputNew() {
     var storage = await getStorage();
     if (storage.finished == true) {
@@ -59,46 +59,36 @@ async function inputNew() {
     });
     curRow.className = "word";
     squares.forEach(function(wordle) {
-        wordle.addEventListener("keyup", async function(event) {
+        wordle.addEventListener("keydown", async function(event) {
             if (event.keyCode === 13) {
                 // Function to submit current poki
                 await sendInput(curRow);
             }
             else if (wordle.value.length == 1) {
-                wordle.nextElementSibling.focus();
+                // wordle.nextElementSibling.focus();
+                curSquare++;
+
             } else if (event.keyCode === 8 ) {
-                wordle.previousElementSibling.focus();
+                // wordle.previousElementSibling.focus();
+                curSquare--;
             }     
         });
     });
 }
 
-async function buttonListener() { 
-    const keys = document.querySelectorAll(".key")
-    keys.forEach( (key) => { 
-        key.addEventListener("click", async function keyFunc(event) { 
-            const ch = event.value; // This gets the character the button has.
-            var squaresArr = [];
-            const curElement = document.activeElement;
-            if (curElement.nodeName == "INPUT") { 
-                squaresArr.push(curElement);
-            }
-            var lastSquare = squaresArr.length - 1;
-            lastSquare.value = ch;       
-        });
-    });
+async function gameState(input) { 
+    var curRow = await getCurRow();
+    var squaresArray = await getSquares(curRow);
+
+    var focusSquare = squaresArray[curSquare];
+    focusSquare.value = input;
 }
 
-async function keyFunction(event) { 
-    const ch = event.value; // This gets the character the button has.
-    const curElement = document.hasFocus;
-    console.log('curElement', curElement);
-    if (curElement.className != 'char') {
-        return;
-    }
-    curElement.value = ch;
-}
-
+const keyboard = document.getElementsByClassName("key");
+keyboard.addEventListener("click", (event) => {
+    const character = event.value;
+    gameState(character);
+  })
 // Get number of characters from daily pokiDB
 async function getDailyChars() {
     var dailyChars = await fetch(`${API_URL}/start`);
@@ -136,6 +126,7 @@ async function getPoki(cr) {
     console.log("input pokemon is " + pokemon);
     return pokemon;
 }
+
 
 async function fetchPokemon(pokemon) {
     const url = `${API_URL}/pokemon/${pokemon}`;
@@ -203,6 +194,7 @@ async function loadGame() {
     }
 }
 
+
 // Call API to start a game
 async function app() {
     // Load game
@@ -247,6 +239,5 @@ async function app() {
     }
     console.log('going to Input');
     await inputNew();
-    await buttonListener();
 }
 app();
