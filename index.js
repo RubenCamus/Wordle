@@ -80,7 +80,7 @@ async function gameState(input) {
     focusSquare.value = input;
     if (input == "Backspace") { curSquare--; return}
     if (input == "Enter") { await sendInput(curRow); return}
-    if (curSquare < squaresArray.length) curSquare++;
+    if (curSquare < squaresArray.length - 1) curSquare++;
 }
 
 window.addEventListener("keydown", (event) => { 
