@@ -84,11 +84,13 @@ async function gameState(input) {
     focusSquare.value = input;
 }
 
-const keyboard = document.querySelectorAll("input.key");
-keyboard.addEventListener("click", async (event) => {
-    const character = event.value;
+const keyboard = document.getElementById("keyboard");
+keyboard.addEventListener("click", (event) => {
+    if (!event.target.classList.contains("key")) return;
+
+    const character = event.target.textContext;
     console.log("Character is ", character);
-    await gameState(character);
+    gameState(character);
   });
 // Get number of characters from daily pokiDB
 async function getDailyChars() {

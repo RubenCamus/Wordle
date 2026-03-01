@@ -16,7 +16,7 @@ div.word {
     margin: 10px;
 }
 
-div.keyboard { 
+#keyboard { 
     display: grid;
     place-items: center;
     margin-top: 30px;
