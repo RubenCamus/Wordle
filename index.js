@@ -65,9 +65,9 @@ async function inputNew() {
                 await sendInput(curRow);
             }
             else if (wordle.value.length == 1) {
-                // wordle.nextElementSibling.focus();
+                wordle.nextElementSibling.focus();
                 curSquare++;
-
+                console.log(curSquare);
             } else if (event.keyCode === 8 ) {
                 // wordle.previousElementSibling.focus();
                 curSquare--;
@@ -79,7 +79,6 @@ async function inputNew() {
 async function gameState(input) { 
     var curRow = await getCurRow();
     var squaresArray = await getSquares(curRow);
-
     var focusSquare = squaresArray[curSquare];
     focusSquare.value = input;
 }
