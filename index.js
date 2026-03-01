@@ -88,7 +88,8 @@ const keyboard = document.getElementById("keyboard");
 keyboard.addEventListener("click", (event) => {
     if (!event.target.classList.contains("key")) return;
 
-    const character = event.target.textContext;
+    const character = event.target.textContent;
+    console.log("ëvent is ", event);
     console.log("Character is ", character);
     gameState(character);
   });

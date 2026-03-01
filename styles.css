@@ -20,6 +20,7 @@ div.word {
     display: grid;
     place-items: center;
     margin-top: 30px;
+    align-items: center;
 }
 button.key { 
     width: 50px;
