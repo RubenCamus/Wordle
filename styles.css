@@ -29,6 +29,7 @@ button.key {
     font-family: fantasy;
     font-weight:700;
     border: none;
+    pointer-events: none;
 }
 html {background-color: rgb(255, 255, 255);}
 

@@ -66,11 +66,11 @@ async function inputNew() {
             }
             else if (wordle.value.length == 1) {
                 wordle.nextElementSibling.focus();
-                curSquare++;
+                if (curSquare < squares.length) curSquare++;
                 console.log(curSquare);
             } else if (event.keyCode === 8 ) {
                 // wordle.previousElementSibling.focus();
-                curSquare--;
+                if (curSquare > 0) curSquare--;
             }     
         });
     });
@@ -81,6 +81,7 @@ async function gameState(input) {
     var squaresArray = await getSquares(curRow);
     var focusSquare = squaresArray[curSquare];
     focusSquare.value = input;
+    if (curSquare < squaresArray.length) curSquare++;
 }
 
 const keyboard = document.getElementById("keyboard");
