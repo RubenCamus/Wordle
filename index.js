@@ -78,6 +78,8 @@ async function gameState(input) {
     var squaresArray = await getSquares(curRow);
     var focusSquare = squaresArray[curSquare];
     focusSquare.value = input;
+    if (input == "Backspace") { curSquare--; return}
+    if (input == "Enter") { await sendInput(curRow); return}
     if (curSquare < squaresArray.length) curSquare++;
 }
 
