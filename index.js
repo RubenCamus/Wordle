@@ -91,7 +91,7 @@ async function handleBackspace(focusSquare,arr)  {
 }
 
 async function gameState(input) {
-    if ( /[^A-Za-z]/.test(input)) {return;}
+    if ( /[^A-Za-z]/.test(input) || input.length > 1) {return;}
     var curRow = await getCurRow();
     var squaresArray = await getSquares(curRow);
     var focusSquare = squaresArray[curSquare];
@@ -107,19 +107,15 @@ async function gameState(input) {
     if (curSquare < squaresArray.length - 1) curSquare++;
 }
 
-window.addEventListener("keydown", (event) => { 
+window.addEventListener("keydown", async (event) => { 
     const character = event.key;
-    console.log(character);
-    gameState(character);
+    await gameState(character);
 })
 
 const keyboard = document.getElementById("keyboard");
 keyboard.addEventListener("click", (event) => {
     if (!event.target.classList.contains("key")) return;
-
     const character = event.target.textContent;
-    console.log("ëvent is ", event);
-    console.log("Character is ", character);
     gameState(character);
   });
 // Get number of characters from daily pokiDB
