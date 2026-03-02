@@ -73,17 +73,28 @@ async function inputNew() {
     });
 }
 
+async function handleBackspace(focusSquare,arr)  {
+    if (curSquare == 0) {
+        focusSquare.value = "";
+        return;            
+    }
+    if (focusSquare.value == "") {
+        curSquare --;
+        var sq = arr[curSquare];
+        sq.value = "";
+        return;
+    }
+    curSquare--;
+    focusSquare.value = "";
+    return;
+}
+
 async function gameState(input) { 
     var curRow = await getCurRow();
     var squaresArray = await getSquares(curRow);
     var focusSquare = squaresArray[curSquare];
-    if (input == "Backspace" && curSquare >= 0 ) {
-        if (curSquare == 0) {
-            focusSquare.value = "";
-            return;            
-        }
-        curSquare--;
-        focusSquare.value = "";
+    if (input == "Backspace") {
+        await handleBackspace(focusSquare, squaresArray);
         return;
     }
     if (input == "Enter") { 
