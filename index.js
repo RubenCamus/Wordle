@@ -91,8 +91,7 @@ async function handleBackspace(focusSquare,arr)  {
 }
 
 async function gameState(input) {
-    var letters = /^[A-Za-z]+$/;
-    if (!input.value.match(letters)) {return;}
+    if ( /[^A-Za-z]/.test(input)) {return;}
     var curRow = await getCurRow();
     var squaresArray = await getSquares(curRow);
     var focusSquare = squaresArray[curSquare];
