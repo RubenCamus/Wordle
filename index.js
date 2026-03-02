@@ -82,6 +82,7 @@ async function handleBackspace(focusSquare,arr)  {
         curSquare --;
         var sq = arr[curSquare];
         sq.value = "";
+        curSquare--
         return;
     }
     curSquare--;
@@ -89,7 +90,9 @@ async function handleBackspace(focusSquare,arr)  {
     return;
 }
 
-async function gameState(input) { 
+async function gameState(input) {
+    var letters = /^[A-Za-z]+$/;
+    if (!input.value.match(letters)) {return;}
     var curRow = await getCurRow();
     var squaresArray = await getSquares(curRow);
     var focusSquare = squaresArray[curSquare];
