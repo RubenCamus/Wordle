@@ -45,6 +45,7 @@ async function getSquares(row) {
 }
 var curSquare = 0;
 async function inputNew() {
+    curSquare = 0;
     var storage = await getStorage();
     if (storage.finished == true) {
         console.log('game already finished');
@@ -104,7 +105,7 @@ async function gameState(input) {
     }
     if ( /[^A-Za-z]/.test(input) || input.length > 1) {return;}
     focusSquare.value = input;
-    if (curSquare < squaresArray.length - 1) curSquare++;
+    if (curSquare < squaresArray.length) curSquare++;
 }
 
 window.addEventListener("keydown", async (event) => { 

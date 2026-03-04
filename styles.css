@@ -47,6 +47,7 @@ input.char {
     font-weight:bold;
     font-size: 25px;
     color:rgb(49, 41, 41);
+    pointer-events: none;
 }
 
 input.green {
