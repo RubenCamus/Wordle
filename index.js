@@ -91,10 +91,6 @@ async function handleBackspace(focusSquare,arr)  {
 }
 
 async function gameState(input) {
-    if ( /[^A-Za-z]/.test(input) || input.length > 1) {return;}
-    var curRow = await getCurRow();
-    var squaresArray = await getSquares(curRow);
-    var focusSquare = squaresArray[curSquare];
     if (input == "Backspace") {
         await handleBackspace(focusSquare, squaresArray);
         return;
@@ -103,6 +99,10 @@ async function gameState(input) {
         await sendInput(curRow); 
         return;
     }
+    if ( /[^A-Za-z]/.test(input) || input.length > 1) {return;}
+    var curRow = await getCurRow();
+    var squaresArray = await getSquares(curRow);
+    var focusSquare = squaresArray[curSquare];
     focusSquare.value = input;
     if (curSquare < squaresArray.length - 1) curSquare++;
 }
