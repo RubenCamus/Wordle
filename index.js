@@ -86,8 +86,8 @@ async function handleBackspace(focusSquare,arr)  {
         curSquare--
         return;
     }
-    curSquare--;
     focusSquare.value = "";
+    curSquare--;
     return;
 }
 
@@ -104,8 +104,13 @@ async function gameState(input) {
         return;
     }
     if ( /[^A-Za-z]/.test(input) || input.length > 1) {return;}
-    focusSquare.value = input;
-    if (curSquare < squaresArray.length) curSquare++;
+    if (curSquare => squaresArray.length - 1) {
+        focusSquare.value = input;
+    }
+    if (curSquare < squaresArray.length - 1) {
+        focusSquare.value = input;
+        curSquare++;
+    }
 }
 
 window.addEventListener("keydown", async (event) => { 
