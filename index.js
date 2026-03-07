@@ -86,7 +86,7 @@ async function handleBackspace(focusSquare,arr)  {
         return;
     }
     focusSquare.value = "";
-    curSquare--;
+    // curSquare--;
     return;
 }
 
