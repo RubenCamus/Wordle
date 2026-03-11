@@ -265,6 +265,7 @@ async function app() {
                     rowSquares[x].value = attemptedWord[x];
                 }
             }
+            loadingScreen.style.display = 'none';
         }
     } else { 
         // start new game
