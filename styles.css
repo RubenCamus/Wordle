@@ -16,6 +16,17 @@ div.word {
     margin: 10px;
 }
 
+.loadingScreen { 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.squareLoading { 
+    width: 100px;
+    height: 100px;
+}
+
 #keyboard { 
     display: grid;
     place-items: center;

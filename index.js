@@ -232,6 +232,8 @@ async function loadGame() {
 // Call API to start a game
 async function app() {
     // Load game
+
+
     const today = new Date().toISOString().slice(0, 10);
     const saved = JSON.parse(localStorage.getItem("game"));
     // Get Daily Chars
@@ -246,7 +248,9 @@ async function app() {
             rows[i].append(square);
         }
     }
-
+    // Hide loading screen
+    var loadingScreen = document.querySelector(".loadingScreen");
+    loadingScreen.style.display = 'none';
     // Check if there is a saved game from today. If there is load it, otherwise create new game.
     if (saved?.date === today) {
         // load attempts
