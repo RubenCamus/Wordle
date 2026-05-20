@@ -261,7 +261,7 @@ async function keyboardColors(colors, cr) {
 // Call API to start a game
 async function app() {
   // Load game
-  jugar();
+  await jugar();
   const today = new Date().toISOString().slice(0, 10);
   const saved = JSON.parse(localStorage.getItem("game"));
   // Get Daily Chars
