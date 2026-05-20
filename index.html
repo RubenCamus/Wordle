@@ -1,55 +1,94 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Pokémon Wordle</title>
-</head>
-<body>
-    <h1 class="title"> Pokémon Wordle</h1>
-    <div class="loadingScreen">
-        <h2>Connecting to server, this may take a while...</h2>
-        <img class="squareLoading" src="./public/screenLoading.gif" alt="squareLoading">
-    </div>
-    <div class="wrapper" id="wordleDiv">
-        <!-- <input type="text" > -->
-    </div>
-    <div id="keyboard">
-        <div class="keyboard-row">
-            <button class="key">Q</button>
-            <button class="key">W</button>
-            <button class="key">E</button>
-            <button class="key">R</button>
-            <button class="key">T</button>
-            <button class="key">Y</button>
-            <button class="key">U</button>
-            <button class="key">I</button>
-            <button class="key">O</button>
-            <button class="key">P</button> 
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="styles.css" />
+        <title>Pokémon Wordle</title>
+    </head>
+    <body>
+        <div class="explanation-wrapper">
+            <div class="explanation-menu">
+                <img src="" alt="" />
+                <p>
+                    Este es un juego sencillo en el que hay que adivinar el
+                    Pokémon en 6 intentos, incluye de la primera generación.
+                    <br />
+                    <br />
+                    Al realizar un intento cambian el color de las casillas
+                    mostrando que letras se encuentran en la palabra y el orden.
+                </p>
+                <div>
+                    <p>
+                        Las letras <b style="color: green">verdes</b> indican
+                        que la letra está en la palabra y en su posición
+                        correcta.
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        Las letras <b style="color: orange">naranjas</b> indican
+                        que la letra está en la palabra pero no se encuentra en
+                        su posición correcta.
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        Las letras <b style="color: grey">grises</b> indican que
+                        la letra no está en la palabra.
+                    </p>
+                </div>
+                <button class="btn-jugar">Jugar</button>
+            </div>
         </div>
-        <div class="keyboard-row">
-            <button class="key">A</button>
-            <button class="key">S</button>
-            <button class="key">D</button>
-            <button class="key">F</button>
-            <button class="key">G</button>
-            <button class="key">H</button>
-            <button class="key">J</button>
-            <button class="key">K</button>
-            <button class="key">L</button>
+        <h1 class="title">Pokémon Wordle</h1>
+        <div class="loadingScreen">
+            <h2>Connecting to server, this may take a while...</h2>
+            <img
+                class="squareLoading"
+                src="./public/screenLoading.gif"
+                alt="squareLoading"
+            />
         </div>
-        <div class="keyboard-row">
-            <button class="key">Z</button>
-            <button class="key">X</button>
-            <button class="key">C</button>
-            <button class="key">V</button>
-            <button class="key">B</button>
-            <button class="key">N</button>
-            <button class="key">M</button>
-            <button class="key">✓</button> 
+
+        <div class="wrapper" id="wordleDiv">
+            <!-- <input type="text" > -->
         </div>
-    </div>
-</body>
-<script src="./index.js"></script>
+        <div id="keyboard">
+            <div class="keyboard-row">
+                <button class="key">Q</button>
+                <button class="key">W</button>
+                <button class="key">E</button>
+                <button class="key">R</button>
+                <button class="key">T</button>
+                <button class="key">Y</button>
+                <button class="key">U</button>
+                <button class="key">I</button>
+                <button class="key">O</button>
+                <button class="key">P</button>
+            </div>
+            <div class="keyboard-row">
+                <button class="key">A</button>
+                <button class="key">S</button>
+                <button class="key">D</button>
+                <button class="key">F</button>
+                <button class="key">G</button>
+                <button class="key">H</button>
+                <button class="key">J</button>
+                <button class="key">K</button>
+                <button class="key">L</button>
+            </div>
+            <div class="keyboard-row">
+                <button class="key">Z</button>
+                <button class="key">X</button>
+                <button class="key">C</button>
+                <button class="key">V</button>
+                <button class="key">B</button>
+                <button class="key">N</button>
+                <button class="key">M</button>
+                <button class="key">✓</button>
+            </div>
+        </div>
+    </body>
+    <script src="./index.js"></script>
 </html>
