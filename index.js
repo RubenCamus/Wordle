@@ -158,7 +158,8 @@ async function getPoki(cr) {
   // get char forEach square
   var pokemon = "";
   squares.forEach((char) => {
-    pokemon += char.value;
+    var charValue = char.value;
+    pokemon += charValue.toLowerCase();
   });
   console.log("input pokemon is " + pokemon);
   return pokemon;
