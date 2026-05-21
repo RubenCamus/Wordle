@@ -242,7 +242,7 @@ async function keyboardColors(colors, cr) {
   // Get all keyboard keys into an array
   var keysArray = document.querySelectorAll(".key");
   // Get rowLetters into Array
-  var squares = Array.from(cr);
+  var squares = await getSquares(cr);
   // Compare
   for (let i = 0; i < colors.length; i++) {
     var char = squares[i].innerText;
