@@ -180,7 +180,7 @@ async function changeColors(colors, cr) {
     curSquare.className = "char " + colors[i];
     curSquare.disabled = true;
     // Change Keyboard Colors
-    var squareText = curSquare.value; // Get the square letter
+    var squareText = toUpperCase(curSquare.value); // Get the square letter
     var allKeyboardLetters = document.querySelectorAll(".key");
     console.log("squareText is ", squareText);
     console.log("array of all keyboard buttons is", allKeyboardLetters);
