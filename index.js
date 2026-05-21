@@ -174,7 +174,6 @@ async function fetchPokemon(pokemon) {
 }
 
 async function changeColors(colors, cr) {
-  let counter = 0;
   var squares = await getSquares(cr);
   for (let i = 0; i < colors.length; i++) {
     var curSquare = squares[i];
@@ -191,6 +190,9 @@ async function changeColors(colors, cr) {
           !keyButton.className.includes("grey") ||
           !keyButton.className.includes("green")
         ) {
+          if (keyButton.className.includes("orange")) {
+            keyButton.classList.remove("orange");
+          }
           keyButton.classList.add(`${colors[i]}`);
           break;
         }
