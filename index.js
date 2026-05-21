@@ -245,10 +245,14 @@ async function keyboardColors(colors, cr) {
   var squares = Array.from(cr);
   // Compare
   for (let i = 0; i < colors.length; i++) {
-    var char = squares[i];
+    var char = squares[i].innerText;
     var charColor = colors[i];
     for (let x = 0; x < keysArray.length; x++) {
       if (char == keysArray[x].innerText) {
+        var str = char.className;
+        if (str.includes("green")) {
+          break;
+        }
         keysArray[x].classList.add(`.${charColor}`);
       }
     }
