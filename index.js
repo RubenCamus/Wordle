@@ -137,7 +137,7 @@ async function sendInput(cr) {
   var colors = await fetchPokemon(poki);
   if (Array.isArray(colors)) {
     await changeColors(colors, cr);
-    await keyboardColors(colors, cr);
+    // await keyboardColors(colors, cr);
     await storeWord(poki);
     cr.className = "word completed";
     await checkWin(colors);
@@ -179,6 +179,21 @@ async function changeColors(colors, cr) {
     var curSquare = squares[i];
     curSquare.className = "char " + colors[i];
     curSquare.disabled = true;
+    // Change Keyboard Colors
+    var squareText = curSquare.innerText; // Get the square letter
+    var allKeyboardLetters = document.querySelectorAll(".key");
+    for (let x = 0; x < allKeyboardLetters.length; x++) {
+      if (squareText == allKeyboardLetters[x].innerText) {
+        var keyButton = allKeyboardLetters[x];
+        if (
+          !keyButton.className.includes("grey") ||
+          !keyButton.className.includes("green")
+        ) {
+          keyButton.className.add(`.{colors[i]}`);
+          break;
+        }
+      }
+    }
   }
 }
 async function checkWin(colors) {
@@ -243,6 +258,7 @@ async function keyboardColors(colors, cr) {
   var keysArray = document.querySelectorAll(".key");
   // Get rowLetters into Array
   var squares = await getSquares(cr);
+  console.log("squares array is: ", squares);
   // Compare
   for (let i = 0; i < colors.length; i++) {
     var char = squares[i].innerText;
