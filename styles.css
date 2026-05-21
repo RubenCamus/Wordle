@@ -79,7 +79,15 @@ input.orange {
 input.grey {
     background-color: darkgrey;
 }
-
+.green {
+    background-color: lightgreen;
+}
+.orange {
+    background-color: orange;
+}
+.grey {
+    background-color: darkgrey;
+}
 div.completed {
     pointer-events: none;
 }
