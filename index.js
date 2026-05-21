@@ -105,7 +105,7 @@ async function gameState(input) {
   if (/[^A-Za-z]/.test(input) || input.length > 1) {
     return;
   }
-  if ((curSquare) => squaresArray.length - 1) {
+  if (curSquare >= squaresArray.length - 1) {
     focusSquare.value = input;
   }
   if (curSquare < squaresArray.length - 1) {
@@ -114,7 +114,7 @@ async function gameState(input) {
   }
 }
 
-window.addEventListener("keydown", async (event) => {
+window.addEventListener("keyup", async (event) => {
   const character = event.key;
   await gameState(character);
 });

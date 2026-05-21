@@ -12,27 +12,34 @@
                 <img src="" alt="" />
                 <p>
                     Este es un juego sencillo en el que hay que adivinar el
-                    Pokémon en 6 intentos, incluye de la primera generación.
+                    Pokémon en 6 intentos, incluye la primera generación.
                     <br />
                     <br />
                     Al realizar un intento cambian el color de las casillas
                     mostrando que letras se encuentran en la palabra y el orden.
                 </p>
-                <div>
+                <div class="explanation-example">
+                    <div>
+                        <p id="green-square">P</p>
+                    </div>
                     <p>
                         Las letras <b style="color: green">verdes</b> indican
                         que la letra está en la palabra y en su posición
                         correcta.
                     </p>
                 </div>
-                <div>
+                <div class="explanation-example">
+                    <div>
+                        <p id="orange-square">C</p>
+                    </div>
                     <p>
                         Las letras <b style="color: orange">naranjas</b> indican
                         que la letra está en la palabra pero no se encuentra en
                         su posición correcta.
                     </p>
                 </div>
-                <div>
+                <div class="explanation-example">
+                    <div><p id="grey-square">Z</p></div>
                     <p>
                         Las letras <b style="color: grey">grises</b> indican que
                         la letra no está en la palabra.
@@ -41,7 +48,7 @@
                 <button class="btn-jugar">Jugar</button>
             </div>
         </div>
-        <h1 class="title">Pokémon Wordle</h1>
+
         <div class="loadingScreen">
             <h2>Connecting to server, this may take a while...</h2>
             <img
@@ -50,7 +57,7 @@
                 alt="squareLoading"
             />
         </div>
-
+        <h1 class="title">Pokémon Wordle</h1>
         <div class="wrapper" id="wordleDiv">
             <!-- <input type="text" > -->
         </div>
@@ -86,7 +93,7 @@
                 <button class="key">B</button>
                 <button class="key">N</button>
                 <button class="key">M</button>
-                <button class="key">Enter</button>
+                <button id="enter-button" class="key">Enter</button>
             </div>
         </div>
     </body>

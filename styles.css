@@ -3,7 +3,7 @@ h1.title {
     text-align: center;
     margin-bottom: 50px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: white;
+    color: black;
 }
 
 div.wrapper {
@@ -46,7 +46,7 @@ button.key {
     margin: 3px;
 }
 html {
-    background-color: rgb(255, 255, 255);
+    background-color: beige;
 }
 
 div.keyboard-row {
@@ -122,11 +122,14 @@ img.social-icon {
     margin-inline-start: 10px;
 }
 .explanation-wrapper {
-    position: absolute;
+    position: fixed;
     display: none;
     width: 100%;
     height: 100%;
     z-index: 2;
+    top: 0;
+    left: 0;
+    background-color: beige;
 }
 .explanation-menu {
     display: flex;
@@ -134,15 +137,54 @@ img.social-icon {
     top: 0;
     width: 50vw;
     height: 100vh;
-    background-color: white;
+    background-color: rgba(red, green, blue, 0);
     margin-left: auto;
     margin-right: auto;
 }
 .explanation-menu p {
     padding: 10px;
+    font-family: fantasy;
+    font-size: 20px;
+    text-align: justfiy;
+}
+.explanation-example {
+    display: flex;
+}
+#green-square {
+    text-align: center;
+    margin: 20px;
+    width: 1rem;
+    background-color: lightgreen;
+    font-size: 24px;
+    font-weight: bold;
+}
+#orange-square {
+    margin: 20px;
+    width: 1rem;
+    text-align: center;
+    background-color: orange;
+    font-size: 24px;
+    font-weight: bold;
+}
+#enter-button {
+    width: fit-content;
+    padding: 3px;
+}
+#grey-square {
+    font-family: fantasy;
+    margin: 20px;
+    width: 1rem;
+    text-align: center;
+    background-color: grey;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
 }
 .btn-jugar {
     width: 50%;
     height: 2rem;
     align-self: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 20px;
 }
