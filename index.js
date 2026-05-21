@@ -189,7 +189,7 @@ async function changeColors(colors, cr) {
           !keyButton.className.includes("grey") ||
           !keyButton.className.includes("green")
         ) {
-          keyButton.className.add(`.{colors[i]}`);
+          keyButton.classList.add(`.{colors[i]}`);
           break;
         }
       }
