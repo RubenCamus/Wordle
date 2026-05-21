@@ -174,6 +174,7 @@ async function fetchPokemon(pokemon) {
 }
 
 async function changeColors(colors, cr) {
+  console.log("colors is: ", colors, "row is: ", cr);
   var squares = await getSquares(cr);
   for (let i = 0; i < colors.length; i++) {
     var curSquare = squares[i];
