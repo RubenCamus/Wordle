@@ -184,22 +184,14 @@ async function changeColors(colors, cr) {
     var squareTextLower = curSquare.value;
     var squareText = squareTextLower.toUpperCase(); // Get the square letter
     var allKeyboardLetters = document.querySelectorAll(".key");
-    console.log("squareText is ", squareText);
-    console.log("array of all keyboard buttons is", allKeyboardLetters);
     for (let x = 0; x < allKeyboardLetters.length; x++) {
       if (squareText == allKeyboardLetters[x].innerText) {
         var keyButton = allKeyboardLetters[x];
-        console.log(
-          "Matched key button with input, key is ",
-          squareText,
-          "and the button is ",
-          keyButton,
-        );
         if (
           !keyButton.className.includes("grey") ||
           !keyButton.className.includes("green")
         ) {
-          keyButton.classList.add("green");
+          keyButton.classList.add(`${colors[i]}`);
           break;
         }
       }
