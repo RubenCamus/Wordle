@@ -18,6 +18,7 @@ Every day, players get a new Pokémon name to guess in a limited number of attem
  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" height="40" alt="express logo"  />
  <img width="12" />   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" height="40" alt="mongodb logo"  />
 </div>
+
 ## How the game works
 
 * Players have a limited number of attempts to guess the hidden Pokémon.
@@ -36,4 +37,4 @@ If you want to modify or create your own game based on this you are welcome to d
 Clone the repository
 `git clone https://github.com/RubenCamus/Wordle.git`
 
-You will also need the backend which you can finde [here](https://github.com/RubenCamus/WordleAPI)
+You will also need the backend which you can find [here](https://github.com/RubenCamus/WordleAPI)
