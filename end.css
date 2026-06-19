@@ -1,0 +1,68 @@
+@import url("styles.css");
+
+.end-screen-wrapper {
+    top: 0;
+    border-radius: 0px 0px 10px 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    margin-right: 25%;
+    margin-left: 25%;
+    width: 50%;
+    height: 100%;
+    background-color: white;
+    overflow: scroll;
+    z-index: 5;
+    box-shadow: black 0px 0px 15px 1px;
+    transition: top 700ms ease;
+}
+.end-screen-wrapper.visible {
+    top: -150%;
+}
+.end-screen-wrapper * {
+    padding: 0.2em;
+}
+.title-wrapper {
+    width: fit-content;
+    padding: 0.5em 0;
+}
+.title-wrapper h2 {
+    font-size: 2.5em;
+}
+.responses-wrapper {
+    padding: 0.5em 0;
+    height: fit-content;
+    width: fit-content;
+}
+.frase-palabra {
+    font-size: 1.1em;
+}
+#palabra-revelada {
+    font-size: 1.2em;
+}
+.content-wrapper {
+    display: flex;
+    margin: 0 1em;
+}
+.timer-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em;
+}
+#timer-text {
+    font-size: 1.3em;
+    font-weight: bold;
+}
+.socials-wrapper {
+    display: flex;
+    padding: 0.5em;
+    flex-direction: column;
+}
+.socials-icons-wrapper {
+    display: flex;
+    padding: 0.5em;
+}
+.socials-wrapper a {
+    padding: 0 0.5em;
+}

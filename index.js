@@ -48,8 +48,7 @@ async function inputNew() {
   curSquare = 0;
   var storage = await getStorage();
   if (storage.finished == true) {
-    console.log("game already finished");
-    // window.location.href = "http://127.0.0.1:5500/end.html"; // Load end screen
+    alert("game already finished");
     return;
   }
   var curRow = await getCurRow();
@@ -65,11 +64,6 @@ async function inputNew() {
         // Function to submit current poki
         await sendInput(curRow);
       }
-      // else if (wordle.value.length == 1) {
-      //     // wordle.nextElementSibling.focus();
-      // } else if (event.keyCode === 8 ) {
-      //     // wordle.previousElementSibling.focus();
-      // }
     });
   });
 }
@@ -225,7 +219,7 @@ async function finishGame() {
     storage.finished = true;
     localStorage.setItem("game", JSON.stringify(storage));
   }
-  window.location.href = `${API_URL}/end.html`; // Load end screen
+  window.location.href = `/end.html`; // Load end screen
 }
 
 async function getStorage() {
@@ -278,11 +272,11 @@ async function keyboardColors(colors, cr) {
       }
     }
   }
-  // Get input colors
-  // Loop all colors for each key and compare innerText values
-  // when match assign class to key
 }
-
+function toggleEndScreen() {
+  var popup = document.getElementById("popup");
+  popup.classList.toggle("visible");
+}
 // Call API to start a game
 async function app() {
   // Load game
@@ -306,6 +300,8 @@ async function app() {
   loadingScreen.style.display = "none";
   // Check if there is a saved game from today. If there is load it, otherwise create new game.
   if (saved?.date === today) {
+    let menuExplicacion = document.querySelector(".explanation-wrapper");
+    menuExplicacion.style.display = none;
     // load attempts
     if (saved.attempts.length != 0) {
       for (let i = 0; i < saved.attempts.length; i++) {
@@ -334,4 +330,5 @@ async function app() {
   console.log("going to Input");
   await inputNew();
 }
+
 app();
