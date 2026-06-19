@@ -4,6 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="end.css" />
         <title>Pokémon Wordle</title>
     </head>
     <body>
@@ -94,6 +95,71 @@
                 <button class="key">N</button>
                 <button class="key">M</button>
                 <button id="enter-button" class="key">Enter</button>
+            </div>
+        </div>
+        <div id="popup" class="end-screen-wrapper">
+            <div class="title-wrapper">
+                <h2>Pokemon Wordle</h2>
+            </div>
+            <div class="responses-wrapper">
+                <!-- LOOK AT LOCALSTORAGE ATTEMPTS AND LOAD ONE ROW OF EMOJIS BASED -->
+                <span></span>
+            </div>
+            <p class="frase-palabra">
+                La palabra es:
+                <button id="hide-word-button" onclick="showWord()"></button>
+                <span id="palabra-revelada"></span>
+            </p>
+            <div class="content-wrapper">
+                <div class="timer-wrapper">
+                    <span>Siguiente palabra en:</span>
+                    <span id="timer-text"
+                        >(Tiempo actual hasta 00:00 GMT+1)</span
+                    >
+                </div>
+                <div class="socials-wrapper">
+                    <span>Share your result</span>
+                    <div class="socials-icons-wrapper">
+                        <a href=""
+                            ><img
+                                class="social-icon"
+                                src="public/twitter-black.svg"
+                                alt="Icono Twitter"
+                        /></a>
+                        <a href=""
+                            ><img
+                                class="social-icon"
+                                src="public/bluesky.svg"
+                                alt="Icono Bluesky"
+                        /></a>
+                        <a href=""
+                            ><img
+                                class="social-icon"
+                                src="public/share.png"
+                                alt="Icono Copiar"
+                        /></a>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="projects">
+                        <h2>Check out my other projects</h2>
+                        <div class="project">
+                            <img src="" alt="" />
+                            <div class="project-text">
+                                <h3>Project Title</h3>
+                                <p>Description</p>
+                                <div class="project-technologies"></div>
+                            </div>
+                        </div>
+                    </div>-->
+            <div id="my-socials">
+                Wordle game by Ruben C
+                <a href="https://github.com/RubenCamus"
+                    ><img
+                        class="social-icon"
+                        src="public/Github_Icon.png"
+                        alt="Github Icon"
+                /></a>
             </div>
         </div>
     </body>

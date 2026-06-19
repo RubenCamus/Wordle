@@ -1,7 +1,7 @@
 @import url("styles.css");
 
 .end-screen-wrapper {
-    top: 0;
+    top: -150%;
     border-radius: 0px 0px 10px 10px;
     display: flex;
     align-items: center;
@@ -18,7 +18,7 @@
     transition: top 700ms ease;
 }
 .end-screen-wrapper.visible {
-    top: -150%;
+    top: 0%;
 }
 .end-screen-wrapper * {
     padding: 0.2em;
@@ -40,6 +40,8 @@
 }
 #palabra-revelada {
     font-size: 1.2em;
+    display: none;
+    visibility: hidden;
 }
 .content-wrapper {
     display: flex;
@@ -65,4 +67,26 @@
 }
 .socials-wrapper a {
     padding: 0 0.5em;
+}
+
+#hide-word-button {
+    width: 4em;
+    height: 2em;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    box-shadow: 1px 1px 0 0 black;
+    background-color: grey;
+}
+#hide-word-button:hover {
+    background-color: black;
+}
+#hide-word-button.visible {
+    display: none;
+    visibility: hidden;
+}
+#palabra-revelada.visible {
+    display: flex;
+    visibility: visible;
 }

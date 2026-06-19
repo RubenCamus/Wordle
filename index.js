@@ -219,7 +219,7 @@ async function finishGame() {
     storage.finished = true;
     localStorage.setItem("game", JSON.stringify(storage));
   }
-  window.location.href = `/end.html`; // Load end screen
+  toggleEndScreen();
 }
 
 async function getStorage() {
@@ -243,13 +243,26 @@ async function loadGame() {
     }
   }
 }
-async function jugar() {
+async function showHelpMenu() {
   var explanationMenu = document.querySelector(".explanation-wrapper");
   explanationMenu.style.display = "flex";
   var btnJugar = document.querySelector(".btn-jugar");
   btnJugar.addEventListener("click", function () {
     explanationMenu.style.display = "none";
   });
+}
+async function showWord() {
+  // Fetch API for poki word
+  var poki = await fetch(`${API_URL}/getWord`);
+  // if fetchedValue is string
+  if (typeof poki == "string") {
+    let buttonRevelar = document.querySelector("#hide-word-button");
+    let textoPoki = document.querySelector("#palabra-revelada");
+    buttonRevelar.classList.toggle("visible");
+    texoPoki.textContent = poki;
+    textoPoki.classList.toggle("visible");
+    return poki;
+  }
 }
 
 async function keyboardColors(colors, cr) {
@@ -273,6 +286,9 @@ async function keyboardColors(colors, cr) {
     }
   }
 }
+function calculateTime() {
+  let curTime = Date();
+}
 function toggleEndScreen() {
   var popup = document.getElementById("popup");
   popup.classList.toggle("visible");
@@ -280,7 +296,6 @@ function toggleEndScreen() {
 // Call API to start a game
 async function app() {
   // Load game
-  await jugar();
   const today = new Date().toISOString().slice(0, 10);
   const saved = JSON.parse(localStorage.getItem("game"));
   // Get Daily Chars
@@ -317,6 +332,7 @@ async function app() {
       loadingScreen.style.display = "none";
     }
   } else {
+    await showHelpMenu();
     // start new game
     localStorage.setItem(
       "game",
